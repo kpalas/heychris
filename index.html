@@ -10,27 +10,33 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Changed from height to min-height */
             background-color: #5c0e18; /* Dark Red Background */
             margin: 0;
-            overflow: hidden; 
+            overflow-y: auto; /* Changed to allow vertical scrolling */
             text-align: center;
+            padding: 20px; /* Added padding so content isn't on the edge */
+            box-sizing: border-box;
         }
 
         .container {
             position: relative;
             z-index: 10; 
+            width: 100%;
+            max-width: 600px; /* Keeps it neat on desktop */
         }
 
         h1 {
-            color: #ffffff; /* White text */
+            color: #ffffff;
             font-size: 3rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2; /* Helps text not overlap */
         }
 
         img {
-            max-width: 300px;
+            max-width: 100%; /* Ensures image fits on small screens */
+            width: 300px;
             height: auto;
             border-radius: 15px;
             margin-bottom: 20px;
@@ -42,7 +48,8 @@
             justify-content: center;
             gap: 20px;
             align-items: center;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Allows buttons to stack on small screens */
+            margin-bottom: 50px; /* Extra space at bottom for scrolling */
         }
 
         button {
@@ -50,9 +57,10 @@
             font-size: 1.5rem;
             font-weight: bold;
             cursor: pointer;
-            border: 2px solid white; /* White border for contrast */
+            border: 2px solid white;
             border-radius: 10px;
             transition: all 0.3s ease;
+            white-space: nowrap; /* Prevents text from breaking weirdly */
         }
 
         #yesBtn {
@@ -71,7 +79,7 @@
 
         /* --- HEART ANIMATION --- */
         #heart-container {
-            position: fixed;
+            position: fixed; /* Keep this fixed so hearts cover everything */
             top: 0;
             left: 0;
             width: 100%;
@@ -83,15 +91,15 @@
 
         .heart {
             position: absolute;
-            top: -10vh; /* Start just above the screen */
-            color: #ffffff; /* White hearts */
+            top: -10vh;
+            color: #ffffff;
             opacity: 0.8;
             animation: fall linear forwards;
         }
 
         @keyframes fall {
             to {
-                top: 110vh; /* End way below screen to ensure they are gone */
+                top: 110vh;
                 transform: translateY(0) rotate(360deg);
             }
         }
@@ -103,7 +111,7 @@
 
     <div class="container">
         <div id="question-screen">
-            <img id="main-image" src="https://lh3.googleusercontent.com/pw/AP1GczNX-fBPUjBitGUBEr2BOrlr6RXbyF2wyDL-45QGN12iMTN_AKbRIwMw_4LezbgNte5GZ5XrpaJ7UStTFs3tuw_HtyVmuVWux_pvig-IvNMAO05dK_i_0c6BXylOM99k0vB1KtD7OaE1s6Je3R33sHs_qaHjQIFdNUGWSKBhqHqInU2rTYvThGJMfrGCo3ng1smgxkVV-aRhqwpsyRm9rUL8LkBgq-J66DuddP9RIlKOuoSrofVYRF_QGRVmR7PDOLsRl0bEGr2CXxWptgDLl-CfVL2s8Kc_5hyCPWalarNkMyicEtxO1apedxERscfzRlqlpSCgBS_O2IadFA7cQUuypNgx0fF6fJSsxYmWEU7G34Rn65_byHEn1hbp6h7SCU6iZ6xUuGbenVDIDS-MWavM5v9qWOS7HZKkBj1FqFWga8aCRRJnDXhTX74qTB1e5mujrg1QT5c-BAgLHs0hiDbuUQdQT8tEiGP-bZAam-Dhi2DGR1wTnQjPfLLjBABIm9Vk86EcFgUMs5qBNDC6ceblaS4gnSu0vGAyWzltc62Z5L5DO0x5oQ28OoNdjt3IeDKW5JbIjYfJ3NEGe8Jl9WXbK9yjUH1eEnT0WNsF8AX8n0RbDh9p1aqJRfHKMtqrAwguo1DgmcFS2f2f3U3zvmBdBu-7oXrohUmCJHRj10mpz6SUbjz6Js-Uvp4e9i-a_t2UkRoP9F_t75K0YkmV5suIn7sdWewlCfXG0yfnY_IRhDH36OkjZa0wAya06kNepXGO9IdpNZmdA5d37SlFMy_4jFTIuA0SINlJ_92aqIMv6kXwCn5kM4GrzsRi46SLIHNJHWjpW07j7JIbFW1RN1mM3dYMQ-aiFyd5aPkG1y_6j0XY2fLa0fYEJXL77YEq7b9EIn9qWl8osOlvMraDHA=w414-h384-s-no?authuser=0" alt="Cute bear">
+            <img id="main-image" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm02cTM1dGRwY2pwdmZ6d3J6bWF2aG1tZ3Z6aG1tZ3Z6aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute bear">
             <h1>Will you be my Valentine?</h1>
             <div class="buttons">
                 <button id="yesBtn" onclick="handleYes()">Yes</button>
@@ -112,8 +120,8 @@
         </div>
 
         <div id="success-screen" class="hidden">
-            <img src="https://media1.tenor.com/m/30_066GE9x0AAAAd/rock-lee-naruto.gif" alt="rcok lee">
-            <h1>yay see you saturday 😝 i love you </h1>
+            <img src="https://media1.tenor.com/m/30_066GE9x0AAAAd/rock-lee-naruto.gif" alt="rock lee">
+            <h1>see you saturday 😝 i love you </h1>
         </div>
     </div>
 
@@ -126,7 +134,6 @@
 
         let noClickCount = 0;
         
-        // YOUR CUSTOM TEXTS HERE
         const noTexts = ["Why?", "bro?", "bro pls", "ur taking the pih", "i see how it is", "...", "ur violating", "🥹", "mommy pls"];
 
         function handleNo() {
@@ -146,10 +153,8 @@
             startHeartAnimation();
         }
 
-        // --- MODIFIED FUNCTION TO MAKE IT RAIN LONGER ---
         function startHeartAnimation() {
             heartContainer.classList.remove('hidden');
-            // 1. INCREASED NUMBER OF HEARTS
             const numHearts = 300; 
 
             for (let i = 0; i < numHearts; i++) {
@@ -159,10 +164,8 @@
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.fontSize = Math.random() * 20 + 15 + 'px';
                 
-                // 2. SLOWER FALL: takes between 3 and 8 seconds to fall
                 heart.style.animationDuration = Math.random() * 5 + 3 + 's'; 
                 
-                // 3. LONGER DELAY SPREAD: Hearts start falling randomly over 30 seconds
                 heart.style.animationDelay = Math.random() * 30 + 's'; 
                 
                 heartContainer.appendChild(heart);
